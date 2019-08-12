@@ -1,5 +1,7 @@
 const express = require("express")
 const mongoose = require("mongoose")
+const bodyParser = require('body-parser')
+const passport = require('passport')
 const app = express()
 
 
@@ -13,9 +15,14 @@ app.all('*', function (req, res, next) {
     next()
 })
 
+// 使用body-parser中间件
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 
 // 引入user.js
 const users = require("./routes/api/users")
+const profiles = require("./routes/api/profiles")
 
 
 // DB config
@@ -29,12 +36,18 @@ mongoose.connect( db)
     })
     .catch(err => console.log(err))
 
+// passport 初始化
+app.use(passport.initialize())
+
+require('./config/passport')(passport)
+
 app.get("/",(req, res) => {
     res.send('Hello World!');
 })
 
 // use route
 app.use("/api/users", users)
+app.use('/api/profiles', profiles)
 
 const port = process.env.PORT || 5000
 

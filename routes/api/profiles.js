@@ -1,9 +1,9 @@
 // @login & register
-const express = require('express');
-const router = express.Router();
-const passport = require('passport');
+const express = require('express')
+const router = express.Router()
+const passport = require('passport')
 
-const Profile = require('../../modules/Profile');
+const Profile = require('../../modules/Profile')
 
 // @route  GET api/profiles/test
 // @desc   返回的请求的json数据

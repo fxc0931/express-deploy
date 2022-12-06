@@ -13,7 +13,7 @@
   "author": "fxc0931",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "mongoose": "^5.6.9"
   }
 }
